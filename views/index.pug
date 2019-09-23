@@ -1,0 +1,258 @@
+mixin status(type)
+    case type
+        when 'success'
+            i.green.check.circle.outline.icon(
+                data-content='Success', data-variation='inverted')
+        when 'fail'
+            i.yellow.exclamation.triangle.icon(
+                data-content='Warning', data-variation='inverted')
+        when 'error'
+            i.red.exclamation.circle.icon(
+                data-content='Error', data-variation='inverted')
+        default
+            i.grey.question.circle.outline.icon(
+                data-content=type, data-variation='inverted')
+
+
+html
+  head
+    title Site Evaluator
+
+    link(href='/lib/semantic.min.css' rel='stylesheet' type='text/css')
+    script(src='https://code.jquery.com/jquery-3.1.1.min.js'
+        integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8='
+        crossorigin='anonymous')
+    script(src='/lib/semantic.min.js')
+
+    script.
+        $(document).ready(() => $('[data-content]').popup())
+  body
+
+    .ui.container(style='margin-top:30px; width: 700px !important')
+
+        h1 Site Evaluator
+        .ui.action.input.fluid
+            if url
+                input(type='text' value=url)
+            else
+                input(type='text' placeholder="Search...")
+            button.ui.icon.button
+                i.search.icon
+
+        .ui.large.list
+            .item
+                .content
+                    .header
+                        h2 Overall
+                    .small.list
+                        .item
+                            +status('not implimented')
+                            .content
+                                .description 
+                                    | All folders and files follow the course 
+                                    | naming rules which include lowercase 
+                                    | only, no spaces, and are friendly/
+                                    | semantic.
+                        .item
+                            +status('not implimented')
+                            .content
+                                .description
+                                    | No relevant violations of design 
+                                    | principles of alignment, proximity, 
+                                    | contrast, repetition, and usable 
+                                    | typography.
+                        .item
+                            +status('not implimented')
+                            .content
+                                .description
+                                    | The visual appearance of all pages in 
+                                    | the site must be responsive, uniform,
+                                    | and consistent at three, basic view 
+                                    | levels.
+                        
+                        .item
+                            +status('not implimented')
+                            .content
+                                .description
+                                    | The page/site does not contain spelling 
+                                    | and grammatical errors.
+            .item
+                .content
+                    .header
+                        h2 Head
+                    .description 
+                        | The following are correctly declared and used in the head section of all HTML
+                    .small.list
+                        .item
+                            +status('success')
+                            .content
+                                .header HTML5 doctype
+                        .item
+                            +status('fail')
+                            .content
+                                .header Meta Charset attribute
+                        .item
+                            +status('error')
+                            .content
+                                .header Meta Viewport
+                                .description do not use a maximum-scale
+                        .item
+                            +status('success')
+                            .content
+                                .header Meaningful Title
+                                .description 70 characters maximum
+                        .item
+                            +status('success')
+                            .content
+                                .header Meta Description
+                                .description 
+                                    | SEO - unique and no more than 300 
+                                    | characters 
+        .ui.large.list
+            .item
+                .content
+                    .header
+                        h2 HTML
+                    .small.list
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header W3C Compliant
+                                .description validated to identify possible issues
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header Semantic Elements are used
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header No Broken Links
+                                .description All resources are able to be found, and hyperlinks do not return 404
+        .ui.large.list
+            .item
+                .content
+                    .header
+                        h2 CSS
+                    .small.list
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header All embedded or inline CSS is avoided
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header W3C Compliant
+                                .description 
+                                    | Validated to identify possible issues
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header CSS normalize
+                                .description
+                                    | is used and up to date
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header Unique ID selectors
+                                .description
+                                    | If an ID selector is used, it is unique
+                                    | to the page
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header Responsive
+                                .description Tested for responsive web design
+                                .small.list
+                                    .item
+                                        +status('not implimented')
+                                        .content
+                                            .description
+                                                | Appropriately sized text and 
+                                                | links
+                                    .item
+                                        +status('not implimented')
+                                        .content
+                                            .description
+                                                | No scrolling right
+                                    .item
+                                        +status('not implimented')
+                                        .content
+                                            .description
+                                                | No deadspace
+        .ui.large.list
+            .item
+                .content
+                    .header
+                        h2 Javascript
+                    .small.list
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header No Errors
+                                .description
+                                    | No errors nor references to unused
+                                    | Javascript functions per page
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header No Output
+                                .description
+                                    | No output to the console during the live
+                                    | version of the page
+        .ui.large.list
+            .item
+                .content
+                    .header
+                        h2 Images
+                    .small.list
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header Optimized
+                                .description
+                                    | images are no larger than needed at its 
+                                    | maximun size on the page
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header Aspect Ratios
+                                .description
+                                    | match the saved image ratio
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header Alt Attribute
+                                .description
+                                    | is assigned a relevant value
+        .ui.large.list
+            .item
+                .content
+                    .header
+                        h2 Accessibility
+                    .small.list
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header The lang attribute is used in the opening html tag
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header Headings are used in the proper order
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header No color contrast violations - DevTools Audit
+        .ui.large.list
+            .item
+                .content
+                    .header
+                        h2 Performance
+                    .small.list
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header The page weight does not exceed 500kb
+                        .item
+                            +status('not implimented')
+                            .content
+                                .header Google Pagespeed test results at least 90
